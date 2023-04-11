@@ -7,10 +7,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebServlet("/logout")
+@WebServlet(name = "Logout Servlet", urlPatterns = "/logout")
 public class LogoutServlet extends HttpServlet {
     @Override
-    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) {
 
         HttpSession httpSession = req.getSession(false);
 

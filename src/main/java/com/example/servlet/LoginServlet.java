@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebServlet("/login")
+@WebServlet(name = "LoginServlet", urlPatterns = "/login")
 public class LoginServlet extends HttpServlet {
 
     @Override
@@ -37,6 +37,8 @@ public class LoginServlet extends HttpServlet {
 
         try {
             if (hasUser && !password.isEmpty()) {
+                HttpSession session = req.getSession(true);
+                session.setAttribute("user", login);
                 resp.sendRedirect("/user/hello.jsp");
             } else {
                 req.getRequestDispatcher("/login.jsp").forward(req, resp);
@@ -44,5 +46,6 @@ public class LoginServlet extends HttpServlet {
         } catch (ServletException | IOException exception) {
             exception.printStackTrace();
         }
+
     }
 }
